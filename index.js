@@ -96,8 +96,9 @@ const sudokuReset = () => {
         if(!$(sudoku.children()[i]).hasClass('pre-set')) 
             $(sudoku.children()[i]).text('')
     }
-
-    selectedBox.click()
+    
+    if (selectedBox != null)
+        selectedBox.click()
 }
 
 
@@ -160,7 +161,7 @@ $(document).on('click', (e) => {
 
 $('.key').on('click', e => {
     let keyClass = $(e.currentTarget).attr('class').split(/\s+/)[0];
-    $(selectedBox).text(keyClass.substring(keyClass.length -1))
+    $(selectedBox).text(keyClass.substring(keyClass.length-1))
 })
 
 $('.delete').on('click', (e) => {
@@ -179,9 +180,8 @@ $('.restart').on('click', () => {
     }
 })
 
-
 $('.check').on('click', () => {
-    // check();
+    console.log(isValid())
 })
 
 $('.answer').on('click', () => {
