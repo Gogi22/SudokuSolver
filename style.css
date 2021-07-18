@@ -60,6 +60,11 @@ body {
     font-weight: 450;
 }
 
+.restart-selected {
+    background-color: rgb(237, 90, 90);
+    color: rgb(255, 255, 255);
+}
+
 .btn:hover {
     background-color: rgba(63, 157, 160, 0.144);
 }
@@ -69,11 +74,9 @@ body {
 }
 
 .key:hover {
-    color: white;
     background-color: rgb(61, 184, 189);
 }
 .key:active {
-    color: white;
     background-color: rgba(61, 185, 189, 0.63);
 }
 
@@ -92,7 +95,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: rgb(29, 106, 229);
     font-size: 2.5rem;
+}
+
+.pre-set {
+    color: black !important;
 }
 
 .top-big {
