@@ -42,7 +42,7 @@ const generateControls = () => {
         let keyName = `key-${i}` 
         key.text(i)
         key.addClass(keyName)
-        key.addClass('key')
+        key.addClass('key keypad')
         key.css('grid-area', keyName)
         controls.append(key)
     }
@@ -51,10 +51,10 @@ const generateControls = () => {
     let restart = $(document.createElement('div'))
     let check = $(document.createElement('div'))
     let answer = $(document.createElement('div'))
-    delet.addClass('key delete')
-    restart.addClass('key restart')
-    check.addClass('key check')
-    answer.addClass('key answer')
+    delet.addClass('btn delete keypad')
+    restart.addClass('btn restart keypad')
+    check.addClass('btn check keypad')
+    answer.addClass('btn answer keypad')
     delet.css('gridArea', 'delete')
     restart.css('gridArea', 'restart')
     check.css('gridArea', 'check')
