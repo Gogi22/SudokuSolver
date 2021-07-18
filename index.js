@@ -96,6 +96,8 @@ const sudokuReset = () => {
         if(!$(sudoku.children()[i]).hasClass('pre-set')) 
             $(sudoku.children()[i]).text('')
     }
+
+    selectedBox.click()
 }
 
 

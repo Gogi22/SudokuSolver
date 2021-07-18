@@ -115,16 +115,16 @@ body {
 }
 
 .top-big {
-    border-top: 2.5px solid black;
+    border-top: 3px solid black;
 }
 .bottom-big {
-    border-bottom: 2.5px solid black;
+    border-bottom: 3px solid black;
 }
 .left-big {
-    border-left: 2.5px solid black;
+    border-left: 3px solid black;
 }
 .right-big {
-    border-right: 2.5px solid black;
+    border-right: 3px solid black;
 }
 .bottom {
     border-bottom: 1px solid black;
