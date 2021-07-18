@@ -59,11 +59,15 @@ const generateControls = () => {
     restart.css('gridArea', 'restart')
     check.css('gridArea', 'check')
     answer.css('gridArea', 'answer')
-    delet.text("Delete")
-    restart.text("Restart")
-    check.text("Check")
-    answer.text("Reveal the Answer")
+    delet.text('Delete')
+    restart.text('Restart')
+    check.text('Check')
+    answer.text('Reveal the Answer')
     controls.append(delet, restart, check, answer)
+    let timer = $(document.createElement('div'))
+    timer.addClass('timer')
+    timer.css('gridArea', 'timer')
+    controls.append(timer)
 }
 
 const generateSudoku = () => {
@@ -87,15 +91,13 @@ const generateSudoku = () => {
     }
 }
 
-
 const sudokuReset = () => {
     for(let i = 0; i < 81; i++){
         if(!$(sudoku.children()[i]).hasClass('pre-set')) 
-            $(sudoku.children()[i]).text("")
+            $(sudoku.children()[i]).text('')
     }
-
-    // add timer reset
 }
+
 
 const sudoku = $('.sudoku')
 const controls = $('.controls')
@@ -104,7 +106,24 @@ let selectedBox = null;
 generateSudokuLayout()
 generateControls()
 generateSudoku()
+const timer = $('.timer')
+$('.timer').hide()
 
+window.onload = () => {
+    let time = 0
+    setInterval(() => {
+        $('.timer').show()
+        let seconds = time % 60
+        let minutes = Math.floor(time / 60) % 60
+        let hours = Math.floor(time / 3600)
+        seconds = seconds < 10 ? '0' + seconds : seconds
+        minutes = minutes < 10 ? '0' + minutes : minutes
+        hours = hours < 10 ? '0' + hours : hours
+        hours = hours == '00' ? '' : hours + ':'
+        timer.text(`${hours}${minutes}:${seconds}`)
+        time += 1
+    }, 1000)
+}
 
 $('.box').on('click', e => {
     let toggle = $(e.currentTarget).hasClass('select-box');
@@ -122,7 +141,7 @@ $(document).on('keypress', e => {
 
 $(document).on('keydown', e => {
     if((e.which == 8 || e.which == 46))
-    $(selectedBox).text("")
+    $(selectedBox).text('')
     
     // reset restart
     $('.restart').text('Restart')
@@ -143,7 +162,7 @@ $('.key').on('click', e => {
 })
 
 $('.delete').on('click', (e) => {
-    $(selectedBox).text("")
+    $(selectedBox).text('')
 })
 
 $('.restart').on('click', () => {
