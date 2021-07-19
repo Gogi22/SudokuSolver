@@ -184,15 +184,15 @@ $('.check').on('click', () => {
     if (isValid()){
         for(let i=0; i<81; i++){
             if($(sudoku.children()[i]).text() == ''){
-                alert('wrong')
+                alert("It doesn't look right")
                 return
             }
         }
     }
     else{
-        alert('wrong')
+        alert("It doesn't look right")
     }
-    alert('correct')
+    alert('Well Done!')
 })
 
 $('.answer').on('click', () => {
