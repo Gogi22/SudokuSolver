@@ -30,3 +30,30 @@ const isValid = () => {
     }
     return true
 }
+
+var done = false
+var speedup = false;
+
+const sudokuSolver = async (r=1, c=1) => {
+    if (r == 10){
+        done = true
+    }
+    else if($(`.box-${r}-${c}`).hasClass('pre-set')){
+        if(done) return
+        if(c==9) await sudokuSolver(r+1, 1)
+        else await sudokuSolver(r, c+1)
+    }
+    else {
+        for(let i=1; i<=9; i++){
+            $(`.box-${r}-${c}`).text(i)
+            if (!speedup) await new Promise(r => setTimeout(r, 4))
+            if(isValid()){
+                if(speedup) await new Promise(r => setTimeout(r, 4))
+                if(c==9) await sudokuSolver(r+1, 1)
+                else await sudokuSolver(r, c+1)
+            }
+            if(done) return
+            else $(`.box-${r}-${c}`).text('')
+        }
+    }
+}

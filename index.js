@@ -181,10 +181,30 @@ $('.restart').on('click', () => {
 })
 
 $('.check').on('click', () => {
-    console.log(isValid())
+    if (isValid()){
+        for(let i=0; i<81; i++){
+            if($(sudoku.children()[i]).text() == ''){
+                alert('wrong')
+                return
+            }
+        }
+    }
+    else{
+        alert('wrong')
+    }
+    alert('correct')
 })
 
 $('.answer').on('click', () => {
-    // solve();
+    if ($('.answer').text() != 'Reveal the Answer'){
+        speedup = !speedup
+        let text = speedup ? 'Speed Down' : 'Speed Up'
+        $('.answer').text(text)
+    }
+    else{
+        sudokuReset()
+        $('.answer').text('Speed Up')
+        sudokuSolver()
+    }
 })
 
