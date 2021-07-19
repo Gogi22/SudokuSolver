@@ -26,8 +26,9 @@ body {
     margin-left: 20px;
     display: grid;
     grid-template-columns: 70px 70px 70px 140px;
-    grid-template-rows: repeat(5, 70px);
+    grid-template-rows: repeat(6, 70px);
     grid-template-areas:
+        "levels levels levels levels"
         "key-1 key-2 key-3 delete"
         "key-4 key-5 key-6 restart"
         "key-7 key-8 key-9 check"
@@ -66,10 +67,17 @@ body {
 }
 
 .btn:hover {
+    color: rgb(63, 157, 160);
     background-color: rgba(63, 157, 160, 0.144);
 }
 .btn:active {
     color: white;
+    background-color: rgba(63, 157, 160, 0.63);
+}
+
+.active {
+    color: white !important;
+    pointer-events: none;
     background-color: rgba(63, 157, 160, 0.63);
 }
 
@@ -108,6 +116,7 @@ body {
     align-items: center;
     color: rgb(29, 106, 229);
     font-size: 2.5rem;
+    cursor: pointer;
 }
 
 .pre-set {
@@ -131,6 +140,44 @@ body {
 }
 .left {
     border-left: 1px solid black;
+}
+
+.levels {
+    grid-area: levels;
+    display: flex;
+    justify-content: space-between;
+    color: rgb(63, 157, 160);
+    font-size: 1.6rem;
+    font-weight: 450;
+}
+
+.easy,
+.medium,
+.hard {
+    grid-area: levels;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px solid black;
+    border-radius: 8px;
+    height: 100%;
+    color: rgb(63, 157, 160);
+    cursor: pointer;
+}
+
+.easy {
+    grid-area: easy;
+    width: 115px;
+}
+
+.medium {
+    grid-area: medium;
+    width: 115px;
+}
+
+.hard {
+    grid-area: hard;
+    width: 115px;
 }
 
 .select-box {

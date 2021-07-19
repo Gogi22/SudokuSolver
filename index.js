@@ -24,9 +24,7 @@ const generateSudokuLayout = () => {
             }
             
             let n = `box-${i}-${j}`
-            square.addClass('box') 
-            square.addClass(n)
-            square.css('gridArea', n)
+            square.addClass(`box ${n}`).css('gridArea', n)
             sudoku.append(square)
             row += n + ' '
         }
@@ -40,55 +38,22 @@ const generateControls = () => {
     for(let i=1; i<=9; i++){
         let key = $(document.createElement('div'))
         let keyName = `key-${i}` 
-        key.text(i)
-        key.addClass(keyName)
-        key.addClass('key keypad')
-        key.css('grid-area', keyName)
+        key.text(i).addClass(keyName).addClass('key keypad').css('grid-area', keyName)
         controls.append(key)
     }
-
     let delet = $(document.createElement('div'))
     let restart = $(document.createElement('div'))
     let check = $(document.createElement('div'))
     let answer = $(document.createElement('div'))
-    delet.addClass('btn delete keypad')
-    restart.addClass('btn restart keypad')
-    check.addClass('btn check keypad')
-    answer.addClass('btn answer keypad')
-    delet.css('gridArea', 'delete')
-    restart.css('gridArea', 'restart')
-    check.css('gridArea', 'check')
-    answer.css('gridArea', 'answer')
-    delet.text('Delete')
-    restart.text('Restart')
-    check.text('Check')
-    answer.text('Reveal the Answer')
-    controls.append(delet, restart, check, answer)
     let timer = $(document.createElement('div'))
-    timer.addClass('timer')
-    timer.css('gridArea', 'timer')
-    controls.append(timer)
-}
-
-const generateSudoku = () => {
-    let sudokuGrid = [[ 3, 0, 6, 5, 0, 8, 4, 0, 0 ],
-                      [ 5, 2, 0, 0, 0, 0, 0, 0, 0 ],
-                      [ 0, 8, 7, 0, 0, 0, 0, 3, 1 ],
-                      [ 0, 0, 3, 0, 1, 0, 0, 8, 0 ],
-                      [ 9, 0, 0, 8, 6, 3, 0, 0, 5 ],
-                      [ 0, 5, 0, 0, 9, 0, 6, 0, 0 ],
-                      [ 1, 3, 0, 0, 0, 0, 2, 5, 0 ],
-                      [ 0, 0, 0, 0, 0, 0, 0, 7, 4 ],
-                      [ 0, 0, 5, 2, 0, 6, 3, 0, 0 ] ]
     
-    for(let i = 0; i < 9; i++){
-        for(let j = 0; j < 9; j++){
-            if(sudokuGrid[i][j]){
-                $(`.box-${i+1}-${j+1}`).text(sudokuGrid[i][j])
-                $(`.box-${i+1}-${j+1}`).addClass('pre-set')
-            }
-        }
-    }
+    delet.addClass('btn delete keypad').css('gridArea', 'delete').text('Delete')
+    restart.addClass('btn restart keypad').css('gridArea', 'restart').text('Restart')
+    check.addClass('btn check keypad').css('gridArea', 'check').text('Check')
+    answer.addClass('btn answer keypad').css('gridArea', 'answer').text('Reveal the Answer')
+    timer.addClass('timer').css('gridArea', 'timer')
+    
+    controls.append(delet, restart, check, answer, timer)
 }
 
 const sudokuReset = () => {
@@ -99,6 +64,7 @@ const sudokuReset = () => {
     
     if (selectedBox != null)
         selectedBox.click()
+
 }
 
 
@@ -147,15 +113,13 @@ $(document).on('keydown', e => {
     $(selectedBox).text('')
     
     // reset restart
-    $('.restart').text('Restart')
-    $('.restart').removeClass('restart-selected')
+    $('.restart').text('Restart').removeClass('restart-selected')
 })
 
 $(document).on('click', (e) => {
     // reset restart if clicked outside
     if($(e.target)[0]!==$('.restart')[0]){
-        $('.restart').text('Restart')
-        $('.restart').removeClass('restart-selected')
+        $('.restart').text('Restart').removeClass('restart-selected')
     }
 })
 
@@ -169,14 +133,12 @@ $('.delete').on('click', (e) => {
 })
 
 $('.restart').on('click', () => {
-    if($('.restart').css('color') === 'rgb(255, 255, 255)'){
-        $('.restart').text('Restart')
-        $('.restart').toggleClass('restart-selected')
+    if($('.restart').text() == 'Confirm?'){
+        $('.restart').text('Restart').toggleClass('restart-selected')
         sudokuReset()
     }
     else{
-        $('.restart').text('Confirm?')
-        $('.restart').toggleClass('restart-selected')
+        $('.restart').text('Confirm?').toggleClass('restart-selected')
     }
 })
 
@@ -207,4 +169,29 @@ $('.answer').on('click', () => {
         sudokuSolver()
     }
 })
+
+$('.easy').on('click', () => {
+    $('.easy').addClass('active')
+    $('.medium').css('pointer-events', 'none')
+    $('.hard').css('pointer-events', 'none')
+    sudokuReset()
+    generateSudoku('easy')
+})
+
+$('.medium').on('click', () => {
+    $('.medium').addClass('active')
+    $('.easy').css('pointer-events', 'none')
+    $('.hard').css('pointer-events', 'none')
+    sudokuReset()
+    generateSudoku('medium')
+})
+
+$('.hard').on('click', () => {
+    $('.hard').addClass('active')
+    $('.easy').css('pointer-events', 'none')
+    $('.medium').css('pointer-events', 'none')
+    sudokuReset()
+    generateSudoku('hard')
+})
+
 
