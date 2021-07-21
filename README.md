@@ -1,5 +1,7 @@
 # Sudoku Solver
 
+<img src="img/sudoku.png">
+
 I Create this project to not only play sudoku but also to show how cool backtracking algorithms are. In addition, by using one of the sudoku Apis I'm able to retrieve different sudokus every time with specific difficulty. 
 
 - Follow the link to [Sudoku Solver](https://gogi22.github.io/SudokuSolver/)
