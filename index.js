@@ -166,6 +166,7 @@ $('.answer').on('click', () => {
     else {
         sudokuReset()
         $('.answer').text('Speed Up')
+        $('.restart').css('pointer-events', 'none')
         sudokuSolver()
     }
 })
